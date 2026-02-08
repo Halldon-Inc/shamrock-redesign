@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 const CATEGORIES = [
@@ -18,90 +19,132 @@ type Category = (typeof CATEGORIES)[number];
 interface Project {
   name: string;
   category: Exclude<Category, "All">;
-  gradient: string;
+  image: string;
+  alt: string;
 }
 
 const PROJECTS: Project[] = [
   {
-    name: "Cooper Residence Patio",
+    name: "Cooper Residence",
     category: "Hardscaping",
-    gradient: "from-shamrock-700 to-shamrock-400",
+    image: "/portfolio/cooper-residence.jpg",
+    alt: "Cooper residence patio restoration — after completion",
   },
   {
-    name: "Daniels Garden Redesign",
+    name: "Daniels Residence",
     category: "Landscape Design",
-    gradient: "from-emerald-800 to-emerald-500",
+    image: "/portfolio/daniels-residence.jpg",
+    alt: "Daniels residence landscape and garden design",
   },
   {
-    name: "Keiss Retaining Wall",
+    name: "Baier Firepit & Patio",
     category: "Hardscaping",
-    gradient: "from-stone-dark to-stone",
+    image: "/portfolio/baier-firepit.jpg",
+    alt: "Baier residence custom firepit and patio hardscaping",
   },
   {
-    name: "Manfuller Walkway",
+    name: "Mawhinney Residence",
+    category: "Landscaping",
+    image: "/portfolio/mawhinney-residence.jpg",
+    alt: "Mawhinney residence full landscape transformation",
+  },
+  {
+    name: "VonHeimburg Driveway",
     category: "Hardscaping",
-    gradient: "from-amber-800 to-amber-500",
+    image: "/portfolio/vonheimburg-driveway.jpg",
+    alt: "VonHeimburg driveway ribbon hardscaping",
   },
   {
-    name: "Cedar Lane Lighting",
+    name: "Fostiak Residence",
+    category: "Landscaping",
+    image: "/portfolio/fostiak-residence.jpg",
+    alt: "Fostiak residence landscaping and plantings",
+  },
+  {
+    name: "Baier Columns & Masonry",
+    category: "Hardscaping",
+    image: "/portfolio/baier-columns.jpg",
+    alt: "Baier residence stone column and masonry work",
+  },
+  {
+    name: "Frasier Residence",
+    category: "Landscape Design",
+    image: "/portfolio/frasier-residence.jpg",
+    alt: "Frasier residence landscape design project",
+  },
+  {
+    name: "Buresh Residence",
+    category: "Landscaping",
+    image: "/portfolio/buresh-residence.jpg",
+    alt: "Buresh residence landscaping and hardscape project",
+  },
+  {
+    name: "Thatcher-Craig Restoration",
+    category: "Hardscaping",
+    image: "/portfolio/thatcher-craig.jpg",
+    alt: "Thatcher-Craig project hardscape restoration — after",
+  },
+  {
+    name: "Wheaton Hardscape",
+    category: "Landscape Design",
+    image: "/portfolio/sma-wheaton.jpg",
+    alt: "Hardscapes and landscaping project in Wheaton, IL",
+  },
+  {
+    name: "Brizzolara Residence",
+    category: "Landscaping",
+    image: "/portfolio/brizzolara-residence.jpg",
+    alt: "Brizzolara residence landscaping project",
+  },
+  {
+    name: "Theriault Residence",
+    category: "Landscape Design",
+    image: "/portfolio/theriault-residence.jpg",
+    alt: "Theriault residence landscape design and installation",
+  },
+  {
+    name: "Daniels Garden View",
+    category: "Landscape Design",
+    image: "/portfolio/daniels-residence-2.jpg",
+    alt: "Daniels residence garden area alternate view",
+  },
+  {
+    name: "St. Charles Project",
+    category: "Hardscaping",
+    image: "/portfolio/sma-stcharles.jpg",
+    alt: "Hardscapes and restoration project in St. Charles, IL",
+  },
+  {
+    name: "Naperville Patio",
+    category: "Hardscaping",
+    image: "/portfolio/sma-naperville.jpg",
+    alt: "Hardscapes and restoration project in Naperville, IL",
+  },
+  {
+    name: "VonHeimburg Landscape",
+    category: "Landscaping",
+    image: "/portfolio/vonheimburg-landscape.jpg",
+    alt: "VonHeimburg residence full landscape view",
+  },
+  {
+    name: "Barrington Estate",
+    category: "Landscape Design",
+    image: "/portfolio/sma-barrington.jpg",
+    alt: "Hardscapes and restoration project in Barrington, IL",
+  },
+  {
+    name: "Outdoor Lighting Design",
     category: "Landscape Lighting",
-    gradient: "from-yellow-700 to-yellow-400",
+    image: "/portfolio/landscape-lighting.jpg",
+    alt: "Professional landscape lighting installation",
   },
   {
-    name: "Maple Drive Landscape",
-    category: "Landscaping",
-    gradient: "from-green-800 to-green-500",
-  },
-  {
-    name: "Oak Park Hardscape",
-    category: "Hardscaping",
-    gradient: "from-orange-800 to-orange-500",
-  },
-  {
-    name: "River Trail Patio",
-    category: "Landscape Design",
-    gradient: "from-teal-700 to-teal-400",
-  },
-  {
-    name: "Willow Creek Garden",
-    category: "Landscaping",
-    gradient: "from-lime-800 to-lime-500",
-  },
-  {
-    name: "Highland Snow Services",
+    name: "Commercial Snow Services",
     category: "Snow Removal",
-    gradient: "from-slate-600 to-slate-300",
-  },
-  {
-    name: "Prairie View Design",
-    category: "Landscape Design",
-    gradient: "from-shamrock-800 to-emerald-400",
-  },
-  {
-    name: "Elmhurst Outdoor Kitchen",
-    category: "Hardscaping",
-    gradient: "from-rose-800 to-rose-500",
+    image: "/portfolio/snow-removal.jpg",
+    alt: "Commercial snow and ice removal services",
   },
 ];
-
-function LandscapeIcon() {
-  return (
-    <svg
-      className="w-16 h-16 text-white/30"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M2 20h20" />
-      <path d="M5 20l5-12 3 6 2-4 4 10" />
-      <circle cx={18} cy={6} r={2} />
-    </svg>
-  );
-}
 
 export default function PortfolioPage() {
   const [active, setActive] = useState<Category>("All");
@@ -191,15 +234,14 @@ export default function PortfolioPage() {
                     className="absolute inset-0 w-full h-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shamrock-500 rounded-2xl"
                     aria-label={`View ${project.name} project`}
                   >
-                    {/* Placeholder Gradient Background */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`}
+                    {/* Project Image */}
+                    <Image
+                      src={project.image}
+                      alt={project.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-
-                    {/* Landscape Icon Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <LandscapeIcon />
-                    </div>
 
                     {/* Bottom Info */}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16 text-left">
