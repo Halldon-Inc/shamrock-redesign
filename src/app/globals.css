@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-navy-500;
+  }
+
+  ::selection {
+    @apply bg-shamrock-500/20 text-navy-500;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-shamrock-500;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-5 sm:px-8 md:px-12 lg:px-20 xl:px-28;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-7xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-shamrock-500 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-shamrock-600 hover:shadow-lg hover:shadow-shamrock-500/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shamrock-500 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-white/30 bg-transparent px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-shamrock-500 bg-transparent px-8 py-4 text-base font-semibold text-shamrock-500 transition-all duration-300 hover:bg-shamrock-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shamrock-500 active:scale-[0.98];
+  }
+}
