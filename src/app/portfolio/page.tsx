@@ -229,37 +229,24 @@ export default function PortfolioPage() {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   className="group relative aspect-[4/3] overflow-hidden rounded-2xl"
                 >
-                  <button
-                    type="button"
-                    className="absolute inset-0 w-full h-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shamrock-500 rounded-2xl"
-                    aria-label={`View ${project.name} project`}
-                  >
-                    {/* Project Image */}
-                    <Image
-                      src={project.image}
-                      alt={project.alt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                  {/* Project Image */}
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
 
-                    {/* Bottom Info */}
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16 text-left">
-                      <span className="mb-2 inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
-                        {project.category}
-                      </span>
-                      <h3 className="font-display text-lg text-white">
-                        {project.name}
-                      </h3>
-                    </div>
-
-                    {/* Hover/Focus Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-shamrock-500/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-                      <span className="rounded-full border-2 border-white px-6 py-2.5 text-sm font-semibold text-white transition-transform duration-300 group-hover:scale-105">
-                        View Project
-                      </span>
-                    </div>
-                  </button>
+                  {/* Bottom Info */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                    <span className="mb-2 inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                      {project.category}
+                    </span>
+                    <h3 className="font-display text-lg text-white">
+                      {project.name}
+                    </h3>
+                  </div>
                 </motion.article>
               ))}
             </AnimatePresence>
